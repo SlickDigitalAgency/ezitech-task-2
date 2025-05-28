@@ -1,4 +1,4 @@
-import { AuthorsData } from '@/types/author/AuthorTypes';
+import { AuthorsData } from '../../types/author/AuthorTypes';
 
 export const authorsData: AuthorsData = {
   title: 'Authors',

@@ -34,7 +34,7 @@ To make a success of the new post-pandemic world of work, businesses should:
     id: '1',
     name: 'William Evans',
     avatar: 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-    role: 'Senior Developer'
+
   },
   image: 'https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
   readingTime: '5 min read',

@@ -12,12 +12,13 @@ const AuthorInfo: React.FC<AuthorInfoProps> = ({ author }) => {
       <div className="flex flex-col items-center md:items-start">
         <div className="w-36 h-36 rounded-full overflow-hidden mb-4 border-2 border-gray-200">
           <img
-            src={author.imageUrl}
+            src={author.image}
             alt={author.name}
             className="w-full h-full object-cover"
           />
         </div>
         <h1 className="text-2xl font-bold text-gray-800 mb-3">{author.name}</h1>
+        {/* Pass the object directly */}
         <SocialLinks links={author.socialLinks} />
       </div>
       <div className="max-w-2xl">

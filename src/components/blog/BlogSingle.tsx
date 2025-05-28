@@ -38,12 +38,8 @@ const BlogSingle: React.FC<BlogSingleProps> = ({ blog }) => {
                 <AvatarImage src={blog.author.avatar} alt={blog.author.name} />
                 <AvatarFallback>{blog.author.name[0]}</AvatarFallback>
               </Avatar>
-              <div>
-                <h3 className="font-medium text-gray-900">{blog.author.name}</h3>
-                <p className="text-sm text-gray-500">{blog.author.role}</p>
-              </div>
+             
             </div>
-            
             <div className="flex items-center space-x-4 text-gray-500">
               <div className="flex items-center">
                 <Clock className="w-4 h-4 mr-1" />

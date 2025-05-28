@@ -1,26 +1,25 @@
-import { Author } from '../../types/author/AuthorTypes';
+import { AuthorWithPosts } from '../../types/author/AuthorTypes';
 
-export const authorData: Author = {
+// New interface extending AuthorWithPosts but replacing 'image' with 'imageUrl'
+export interface AuthorWithImageUrlAndPosts extends Omit<AuthorWithPosts, 'image'> {
+  imageUrl: string;
+}
+
+// Your author data with posts and imageUrl
+export const authorData: AuthorWithImageUrlAndPosts = {
   id: '1',
   name: 'William Evans',
   imageUrl: 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
   bio: `We are especially interested in finding developers with experience either building web APIs with Go or experience with functional programming (e.g. Elixir, Node.js, Clojure, F#). You might not have experience with all the technologies in our stack, but you are motivated to learn deeply. You will get the opportunity to work with both Go and Elixir with experienced team mates who can teach and pair with you to learn whatever you have less experience with.You care about security, code quality, scalability.
 
 We are looking for a personal financial planning app (Certified Financial Planner™ preferred) who will lead our client advising efforts, on areas including: saving, retirement, debt management.`,
-  socialLinks: [
-    {
-      platform: 'facebook',
-      url: 'https://facebook.com',
-    },
-    {
-      platform: 'twitter',
-      url: 'https://twitter.com',
-    },
-    {
-      platform: 'linkedin',
-      url: 'https://linkedin.com',
-    },
-  ],
+
+  socialLinks: {
+    facebook: 'https://facebook.com',
+    twitter: 'https://twitter.com',
+    linkedin: 'https://linkedin.com',
+  },
+
   posts: [
     {
       id: '1',
@@ -40,7 +39,7 @@ We are looking for a personal financial planning app (Certified Financial Planne
     },
     {
       id: '3',
-      title: 'Three Reasons You DON\'T Need An App On The App Store',
+      title: "Three Reasons You DON'T Need An App On The App Store",
       excerpt: 'Exploring alternatives to native mobile applications',
       imageUrl: 'https://images.pexels.com/photos/3182834/pexels-photo-3182834.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
       date: 'April 03, 2023',

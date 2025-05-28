@@ -1,7 +1,15 @@
 import { FC } from 'react';
 import { motion } from 'framer-motion';
-import { Facebook, Twitter, Linkedin } from 'lucide-react';
+import { Facebook, Twitter, Linkedin, Instagram } from 'lucide-react';
 import { authorsData } from '@/constants/author/AuthorData';
+import { Author as AuthorType } from '../../types/author/AuthorTypes';
+
+const iconMap = {
+  facebook: Facebook,
+  twitter: Twitter,
+  linkedin: Linkedin,
+  instagram: Instagram,
+} as const;
 
 const Author: FC = () => {
   return (
@@ -14,7 +22,7 @@ const Author: FC = () => {
           className="w-20 h-20 bg-yellow-200 rounded-br-[3rem]"
         />
       </div>
-      
+
       <div className="absolute right-10 bottom-20">
         <motion.div
           initial={{ opacity: 0 }}
@@ -33,7 +41,7 @@ const Author: FC = () => {
             <span>/</span>
             <span className="text-gray-900">{authorsData.breadcrumb.authors}</span>
           </div>
-          
+
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -46,7 +54,7 @@ const Author: FC = () => {
 
         {/* Authors Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {authorsData.authors.map((author, index) => (
+          {authorsData.authors.map((author: AuthorType, index: number) => (
             <motion.div
               key={author.id}
               initial={{ opacity: 0, y: 20 }}
@@ -62,42 +70,28 @@ const Author: FC = () => {
                   className="w-full h-full object-cover rounded-full"
                 />
               </div>
-              
+
               <h3 className="text-xl font-semibold text-gray-900 mb-2">
                 {author.name}
               </h3>
-              
-              <p className="text-gray-600 mb-4">
-                {author.bio}
-              </p>
-              
+
+              <p className="text-gray-600 mb-4">{author.bio}</p>
+
               <div className="flex justify-center items-center gap-4">
-                {author.socialLinks.facebook && (
-                  <a
-                    href={author.socialLinks.facebook}
-                    className="text-gray-400 hover:text-gray-600 transition-colors"
-                  >
-                    <Facebook className="w-5 h-5" />
-                  </a>
-                )}
-                
-                {author.socialLinks.twitter && (
-                  <a
-                    href={author.socialLinks.twitter}
-                    className="text-gray-400 hover:text-gray-600 transition-colors"
-                  >
-                    <Twitter className="w-5 h-5" />
-                  </a>
-                )}
-                
-                {author.socialLinks.linkedin && (
-                  <a
-                    href={author.socialLinks.linkedin}
-                    className="text-gray-400 hover:text-gray-600 transition-colors"
-                  >
-                    <Linkedin className="w-5 h-5" />
-                  </a>
-                )}
+                {Object.entries(author.socialLinks).map(([platform, url]) => {
+                  const Icon = iconMap[platform as keyof typeof iconMap];
+                  return (
+                    <a
+                      key={platform}
+                      href={url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-gray-400 hover:text-gray-600 transition-colors"
+                    >
+                      <Icon className="w-5 h-5" />
+                    </a>
+                  );
+                })}
               </div>
             </motion.div>
           ))}

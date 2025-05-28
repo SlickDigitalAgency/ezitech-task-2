@@ -1,13 +1,22 @@
 import React from 'react';
-import { Author } from '@/types/author/AuthorTypes';
+import { AuthorWithPosts, Author } from '@/types/author/AuthorTypes';
 import AuthorInfo from './AuthorInfo';
 import RecentPosts from './RecentPosts';
 
 interface AuthorsSingleProps {
-  author: Author;
+  author: AuthorWithPosts;
 }
 
 const AuthorsSingle: React.FC<AuthorsSingleProps> = ({ author }) => {
+  // Create an Author object from AuthorWithPosts by renaming imageUrl to image
+  const authorForInfo: Author = {
+    id: author.id,
+    name: author.name,
+    image: author.imageUrl,   // rename here
+    bio: author.bio,
+    socialLinks: author.socialLinks,
+  };
+
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <div className="relative">
@@ -26,10 +35,10 @@ const AuthorsSingle: React.FC<AuthorsSingleProps> = ({ author }) => {
             <circle cx="50" cy="150" r="10" fill="#60A5FA" fillOpacity="0.3" />
           </svg>
         </div>
-        
+
         {/* Content */}
         <div className="relative z-10">
-          <AuthorInfo author={author} />
+          <AuthorInfo author={authorForInfo} />
           <RecentPosts 
             posts={author.posts} 
             author={{ name: author.name, imageUrl: author.imageUrl }} 
