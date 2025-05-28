@@ -1,5 +1,5 @@
 import React from 'react';
-import { Post } from '@/types/author/AuthorTypes';
+import { Post, Author } from '@/types/author/AuthorTypes';
 
 interface PostCardProps {
   post: Post;
